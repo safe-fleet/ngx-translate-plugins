@@ -1,6 +1,6 @@
 import { TestBed, inject, waitForAsync } from '@angular/core/testing';
 import { TranslateTestingModule } from '../public_api';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateCompiler, TranslateFakeCompiler, TranslateService } from '@ngx-translate/core';
 
 describe('TranslateTestingModule', () => {
   const GREETING_KEY = 'greeting';
@@ -295,10 +295,7 @@ describe('TranslateTestingModule', () => {
       });
 
       it('should override the compiler for the provided TranslateService instance', () => {
-        const translateCompiler = jasmine.createSpyObj('TranslateCompiler', [
-          'compile',
-          'compileTranslations'
-        ]);
+        const translateCompiler = (TranslateFakeCompiler as unknown) as TranslateCompiler;
         translateModule.withCompiler(translateCompiler);
 
         expect(translateModule.providers).toBeTruthy();
