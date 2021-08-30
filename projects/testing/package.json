@@ -1,18 +1,15 @@
 {
-  "name": "@safe-fleet/ngx-translate-testing",
+  "name": "ngx-translate-testing",
   "description": "A library of utilities for testing with the ngx-translate i18n Angular library",
-  "version": "0.0.0-development",
+  "version": "5.1.0",
   "author": {
     "name": "Michael Wooten"
   },
   "license": "MIT",
-  "homepage": "https://github.com/safe-fleet/ngx-translate-plugins#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/safe-fleet/ngx-translate-plugins.git"
-  },
+  "homepage": "https://github.com/mwootendev/ngx-translate-plugins",
+  "repository": "https:/github.com/mwootendev/ngx-translate-plugins.git",
   "bugs": {
-    "url": "https://safefleet.atlassian.net/browse"
+    "url": "https://github.com/mwootendev/ngx-translate-plugins/issues"
   },
   "keywords": [
     "angular",
