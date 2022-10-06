@@ -14,7 +14,7 @@ libraries {
   }
 
   nodejs {
-    build_image = 'node:14.17.4'
+    build_image = 'node:16.13.0-alpine'
 
     build {
       commands = 'npm ci,npm run build:lib:prod'

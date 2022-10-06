@@ -5,19 +5,13 @@ module.exports = {
     'ts-jest': {
       tsconfig: './projects/testing/tsconfig.spec.json',
       stringifyContentPathRegex: '\\.html$',
-      astTransformers: {
-        before: [
-          'jest-preset-angular/build/InlineFilesTransformer',
-          'jest-preset-angular/build/StripStylesTransformer',
-        ],
-      },
       diagnostics: {
-        ignoreCodes: [151001],
-      },
-    },
+        ignoreCodes: [151001]
+      }
+    }
   },
   transform: {
-    '^.+\\.(ts|js|html)$': 'ts-jest',
+    '^.+\\.(ts|js|mjs|html|svg)$': 'jest-preset-angular'
   },
   preset: 'jest-preset-angular',
   setupFilesAfterEnv: ['<rootDir>/setupJest.ts'],
@@ -25,7 +19,7 @@ module.exports = {
   moduleFileExtensions: ['ts', 'js', 'html'],
   testPathIgnorePatterns: ['/node_modules/', '/dist/', 'contract.spec.ts$', 'comp.spec.ts$'],
   silent: true,
-  moduleDirectories: ['node_modules'],
+  moduleDirectories: ['node_modules', '.'],
   roots: ['<rootDir>/projects/testing/src'],
   collectCoverage: true,
   collectCoverageFrom: [
@@ -41,8 +35,10 @@ module.exports = {
     '!**/*.d.ts',
     '!**/public-api.ts'
   ],
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/projects/testing/' }),
-  transformIgnorePatterns: [`/node_modules/`],
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
+    prefix: '<rootDir>/projects/testing/'
+  }),
+  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
   coverageDirectory: 'coverage',
-  coverageReporters: ['json', 'lcov', 'clover', 'html', 'text'],
+  coverageReporters: ['json', 'lcov', 'clover', 'html', 'text']
 };
