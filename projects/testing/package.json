@@ -24,7 +24,7 @@
     "test"
   ],
   "peerDependencies": {
-    "@angular/common": "^>=10",
+    "@angular/common": ">=10",
     "@angular/core": ">=10",
     "@ngx-translate/core": ">=14",
     "rxjs": ">=6"
