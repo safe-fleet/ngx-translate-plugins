@@ -20,7 +20,9 @@ Currently, `ngx-translate-testing` is compatible with Angular 6+ and `@ngx-trans
 | 10.0.0  |        13.0.0       |         5.0.0         |
 | 11.0.0  |        13.0.0       |         5.1.0         |
 | 12.0.0  |        13.0.0       |         5.2.0         |
-
+| 13.0.0  |        14.0.0       |         6.0.0         |
+| 15.0.0  |        14.0.0       |         6.1.0         |
+| 16.0.0  |        15.0.0       |         7.0.0         |
 
 The `ngx-translate-testing` module needs to be installed as a test dependency using your favorite NPM client.
 
@@ -115,6 +117,16 @@ TranslateTestingModule
   .withCompiler(new TranslateMessageFormatCompiler())
 ```
 
+#### Custom Parser
+
+The default parser used in the `TranslateTestingModule` it is an instance of `TranslateDefaultParser`. If your translations use a custom parser, you can specify the parser with the `withParser()` instance method.
+
+```ts
+TranslateTestingModule
+  .withTranslations("en", require("../../assets/i18n/en.json"))
+  .withParser(new CustomTranslateDefaultParser())
+```
+
 ## License
 Licensed under MIT
 
@@ -124,3 +136,4 @@ Licensed under MIT
 * Paulo Soares ([@7jpsan](https://github.com/7jpsan))
 * Paul Iannello ([paul-kr](https://github.com/paul-kr))
 * Arnaud Tiérant ([@atierant](https://github.com/atierant))
+* Sergio ([@sjarmero](https://github.com/sjarmero))

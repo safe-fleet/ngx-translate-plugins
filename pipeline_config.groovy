@@ -2,6 +2,8 @@ libraries {
   core {
     slack_channel = "media-management-alerts"
     node_label = 'docker-builds-slave'
+    general = true
+    github_packages = true
 
     semantic_release {
       enabled = true
@@ -14,7 +16,7 @@ libraries {
   }
 
   nodejs {
-    build_image = 'node:16.13.0-alpine'
+    build_image = 'node:16.14.0-alpine'
 
     build {
       commands = 'npm ci,npm run build:lib:prod'
