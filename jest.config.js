@@ -1,25 +1,25 @@
-const { pathsToModuleNameMapper } = require('ts-jest/utils');
+const { pathsToModuleNameMapper } = require('ts-jest');
 const { compilerOptions } = require('./tsconfig.json');
 module.exports = {
-  globals: {
-    'ts-jest': {
-      tsconfig: './projects/testing/tsconfig.spec.json',
-      stringifyContentPathRegex: '\\.html$',
-      diagnostics: {
-        ignoreCodes: [151001]
-      }
-    }
-  },
   transform: {
-    '^.+\\.(ts|js|mjs|html|svg)$': 'jest-preset-angular'
+    '^.+\\.(ts|js|mjs|html|svg)$': [
+      'jest-preset-angular',
+      {
+        tsconfig: './projects/testing/tsconfig.spec.json',
+        stringifyContentPathRegex: '\\.html$',
+        diagnostics: {
+          ignoreCodes: [151001]
+        }
+      }
+    ]
   },
   preset: 'jest-preset-angular',
   setupFilesAfterEnv: ['<rootDir>/setupJest.ts'],
   testMatch: ['**/+(*.)+(spec|test).+(ts|js)?(x)'],
-  moduleFileExtensions: ['ts', 'js', 'html'],
+  moduleFileExtensions: ['ts', 'html', 'js', 'json', 'mjs'],
   testPathIgnorePatterns: ['/node_modules/', '/dist/', 'contract.spec.ts$', 'comp.spec.ts$'],
   silent: true,
-  moduleDirectories: ['node_modules', '.'],
+  moduleDirectories: ['node_modules', '<rootDir>'],
   roots: ['<rootDir>/projects/testing/src'],
   collectCoverage: true,
   collectCoverageFrom: [
