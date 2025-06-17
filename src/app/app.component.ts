@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'mew-root',
   templateUrl: './app.component.html',
+  standalone: false,
 })
 export class AppComponent {
   please: Observable<string>;
