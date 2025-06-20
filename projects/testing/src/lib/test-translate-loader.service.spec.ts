@@ -1,5 +1,3 @@
-import { TestBed, inject, waitForAsync } from '@angular/core/testing';
-
 import { Translations } from './translations.model';
 import { TestTranslateLoader } from './test-translate-loader.service';
 
@@ -18,12 +16,12 @@ describe('TestTranslateLoader', () => {
   const TRANSLATIONS: Translations = {
     [ENGLISH_LANGUAGE]: {
       [GREETING]: GREETING_ENGLISH,
-      [THANK_YOU]: THANK_YOU_ENGLISH
+      [THANK_YOU]: THANK_YOU_ENGLISH,
     },
     [SPANISH_LANGUAGE]: {
       [GREETING]: GREETING_SPANISH,
-      [THANK_YOU]: THANK_YOU_SPANISH
-    }
+      [THANK_YOU]: THANK_YOU_SPANISH,
+    },
   };
 
   let translateLoader: TestTranslateLoader;
@@ -50,22 +48,22 @@ describe('TestTranslateLoader', () => {
       expect(typeof translateLoader.getTranslation).toEqual('function');
     });
 
-    it('should return the English translations', done => {
-      translateLoader.getTranslation(ENGLISH_LANGUAGE).subscribe(englishTranslations => {
+    it('should return the English translations', (done) => {
+      translateLoader.getTranslation(ENGLISH_LANGUAGE).subscribe((englishTranslations) => {
         expect(englishTranslations).toEqual(TRANSLATIONS[ENGLISH_LANGUAGE]);
         done();
       });
     });
 
-    it('should return the Spanish translations', done => {
-      translateLoader.getTranslation(SPANISH_LANGUAGE).subscribe(spanishTranslations => {
+    it('should return the Spanish translations', (done) => {
+      translateLoader.getTranslation(SPANISH_LANGUAGE).subscribe((spanishTranslations) => {
         expect(spanishTranslations).toEqual(TRANSLATIONS[SPANISH_LANGUAGE]);
         done();
       });
     });
 
-    it('should return an empty set of translations for an unknown language', done => {
-      translateLoader.getTranslation('fr').subscribe(unknownTranslations => {
+    it('should return an empty set of translations for an unknown language', (done) => {
+      translateLoader.getTranslation('fr').subscribe((unknownTranslations) => {
         expect(unknownTranslations).toEqual({});
         done();
       });

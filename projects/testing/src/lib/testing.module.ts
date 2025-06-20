@@ -6,7 +6,7 @@ import {
   TranslateFakeCompiler,
   TranslateModule,
   TranslateService,
-  TranslateCompiler
+  TranslateCompiler,
 } from '@ngx-translate/core';
 
 import { TestTranslateLoader } from './test-translate-loader.service';
@@ -21,7 +21,7 @@ import { LanguageTranslations, Translations } from './translations.model';
  */
 @NgModule({
   imports: [TranslateModule],
-  exports: [TranslateModule]
+  exports: [TranslateModule],
 })
 export class TranslateTestingModule implements ModuleWithProviders<TranslateTestingModule> {
   private _translations: Translations = {};
@@ -50,10 +50,7 @@ export class TranslateTestingModule implements ModuleWithProviders<TranslateTest
    * @returns the new instance that can be used to chain additional configuration.
    * @memberof TranslateTestingModule
    */
-  public static withTranslations(
-    language: string,
-    translations: LanguageTranslations
-  ): TranslateTestingModule;
+  public static withTranslations(language: string, translations: LanguageTranslations): TranslateTestingModule;
 
   /**
    * Creates a new instance of the {TranslateTestingModule} with the provided translations.
@@ -81,7 +78,7 @@ export class TranslateTestingModule implements ModuleWithProviders<TranslateTest
     const translateTestingModule = new TranslateTestingModule();
 
     if (typeof languageOrTranslations === 'string') {
-      return translateTestingModule.withTranslations(<string>languageOrTranslations, translations);
+      return translateTestingModule.withTranslations(languageOrTranslations as string, translations);
     }
 
     return translateTestingModule.withTranslations(languageOrTranslations);
@@ -107,8 +104,8 @@ export class TranslateTestingModule implements ModuleWithProviders<TranslateTest
     return [
       {
         provide: TranslateService,
-        useValue: translateService
-      }
+        useValue: translateService,
+      },
     ];
   }
 
@@ -150,22 +147,14 @@ export class TranslateTestingModule implements ModuleWithProviders<TranslateTest
    * @returns the instance that can be used to chain additional configuration.
    * @memberof TranslateTestingModule
    */
-  public withTranslations(
-    language: string,
-    translations: LanguageTranslations
-  ): TranslateTestingModule;
+  public withTranslations(language: string, translations: LanguageTranslations): TranslateTestingModule;
 
-  public withTranslations(
-    languageOrTranslations: string | Translations,
-    translations?: LanguageTranslations
-  ): TranslateTestingModule {
+  public withTranslations(languageOrTranslations: string | Translations, translations?: LanguageTranslations): TranslateTestingModule {
     if (typeof languageOrTranslations === 'string' && translations) {
       this.addTranslations(languageOrTranslations, translations);
       this._defaultLanguage = languageOrTranslations;
     } else if (languageOrTranslations) {
-      Object.keys(languageOrTranslations).forEach(language =>
-        this.addTranslations(language, languageOrTranslations[language])
-      );
+      Object.keys(languageOrTranslations).forEach((language) => this.addTranslations(language, languageOrTranslations[language]));
     }
     return this;
   }
@@ -233,7 +222,7 @@ export class TranslateTestingModule implements ModuleWithProviders<TranslateTest
     if (this._translations[language]) {
       this._translations[language] = {
         ...this._translations[language],
-        ...translations
+        ...translations,
       };
     } else {
       this._translations[language] = translations;
